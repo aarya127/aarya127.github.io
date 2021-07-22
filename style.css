@@ -20,7 +20,7 @@ nav img{
     width:100px;
 }
 .nav-links{
-    flex:2;  
+    flex:5;  
     text-align:left;
 }
 .nav-linksul li{
