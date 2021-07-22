@@ -54,11 +54,11 @@ nav img{
     text-align:center;
     top:40%;
     left:50%;
-    transform:translate(-40%,-50%);
+    transform:translate(-50%,-50%);
 }
 .information h1{
     font-size:500%;
 }
 .information p{
-    font-size:200%;
+    font-size:300%;
 }
