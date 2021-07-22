@@ -23,8 +23,8 @@ nav img{
     flex:2;  
 }
 .nav-linksul li{
-    list-style:georgian;
-    display:inline-block;
+    list-style:none;
+    display:contents;
     padding:8px 12px;
     position:relative;
 }
