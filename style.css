@@ -29,3 +29,9 @@ nav img{
     padding:8px 12px;
     position:relative;
 }
+.nav-links ul li a{
+    color:black;
+    font-size: 20;
+    text-shadow: blue;
+    text-decoration: brown;
+}
