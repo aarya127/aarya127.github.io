@@ -52,10 +52,13 @@ nav img{
     color:darkblue;
     position:absolute;
     text-align:center;
-    top:50%;
+    top:40%;
     left:50%;
     transform:translate(-50%,-50%);
 }
 .information h1{
     font-size:500%;
+}
+.information p{
+    font-size:200%;
 }
