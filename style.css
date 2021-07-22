@@ -52,4 +52,7 @@ nav img{
     color:darkblue;
     position:absolute;
     text-align:center;
+    top:50%;
+    bottom:50%;
+    transform:translate(-50%,-50%);
 }
