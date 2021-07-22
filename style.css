@@ -35,6 +35,18 @@ nav img{
     text-shadow: blue;
     text-decoration:none;
 }
+.links ul li::after{
+    content:'';
+    width:0%;
+    height:2px;
+    background:#f44336;
+    display:block;
+    margin:auto;
+    transition:0.5s;
+}
+.links ul li:hover::after{
+    width:100%;
+}
 .information{
     width:100%;
     color:darkblue;
