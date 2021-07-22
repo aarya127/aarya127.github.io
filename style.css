@@ -20,7 +20,8 @@ nav img{
     width:100px;
 }
 .nav-links{
-    flex:1;  
+    flex:2;  
+    text-align:left;
 }
 .nav-linksul li{
     list-style:georgian;
