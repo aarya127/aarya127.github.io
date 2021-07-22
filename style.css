@@ -16,3 +16,15 @@ nav{
     justify-content:space-evenly;
     align-items:center;
 }
+nav img{
+    width:100px;
+}
+.nav-links{
+    flex:2;  
+}
+.nav-linksul li{
+    list-style:georgian;
+    display:contents;
+    padding:8px 12px;
+    position:relative;
+}
