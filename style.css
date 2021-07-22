@@ -20,10 +20,10 @@ nav img{
     width:100px;
 }
 .nav-links{
-    flex:2;  
+    flex:1;  
 }
 .nav-linksul li{
-    list-style:none;
+    list-style:georgian;
     display:contents;
     padding:8px 12px;
     position:relative;
