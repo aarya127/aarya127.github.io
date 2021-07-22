@@ -24,8 +24,8 @@ nav img{
     text-align:left;
 }
 .nav-linksul li{
-    list-style:georgian;
-    display:contents;
+    list-style:none;
+    display:none;
     padding:8px 12px;
     position:relative;
 }
