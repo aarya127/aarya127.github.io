@@ -55,5 +55,7 @@ nav img{
     top:50%;
     bottom:50%;
     transform:translate(-50%,-50%);
-    font-size:50px;
+}
+.information h1{
+    font-size: 70px;
 }
