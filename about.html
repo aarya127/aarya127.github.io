@@ -8,17 +8,26 @@
     <link rel="stylesheet" href="aboutstyle.css">
 </head>
 <body>
-    <script>
-        // When the user scrolls down 20px from the top of the document, slide down the navbar
-        window.onscroll = function() {scrollFunction()};
-        
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("navbar").style.top = "0";
-            } else {
-            document.getElementById("navbar").style.top = "-50px";
-            }
-        }
-    </script>
+    <section class="header">
+        <nav>
+            <a href="index.html"></a>
+            <div class="links">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="resume.html">RESUME</a></li>
+                    <li><a href="projects.html">PROJECTS</a></li>
+                    <li><a href="links.html">LINKS</a></li>
+                    <li><a href="accomplishments.html">ACCOMPLISHMENTS</a></li>
+                    <li><a href="goals.html">GOALS</a></li>
+                </ul>
+            </div>
+        </nav>
+<div class="information">
+    <h1>More about me?</h1>
+    <p></p>
+</div>
+    </section>
+
 </body>
 </html>
