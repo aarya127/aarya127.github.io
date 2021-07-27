@@ -19,4 +19,60 @@ nav{
 nav img{
     width:300px;
 }
-
+.links{
+    flex:1;  
+    text-align:center;
+}
+.links ul li{
+    list-style:none;
+    display:inline-block;
+    padding:8px 12px;
+    position:relative;
+}
+.links ul li a{
+    color:rgb(252, 24, 24);
+    font-size:20px;
+    text-shadow: blue;
+    text-decoration:none;
+}
+.links ul li::after{
+    content:'';
+    width:0%;
+    height:2px;
+    background:burlywood;
+    display:block;
+    margin:auto;
+    transition:0.2s;
+}
+.links ul li:hover::after{
+    width:100%;
+}
+.information{
+    width:100%;
+    color:rgb(2, 2, 2);
+    position:absolute;
+    text-align:left;
+    top:20%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size: 200%;
+    font-family: 'Times New Roman', Times, serif;
+}
+.informationTwo{
+    width:100%;
+    position:absolute;
+    text-align:left;
+    top:40%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size: 120%;
+}
+.informationThree{
+    width:100%;
+    position:absolute;
+    text-align:left;
+    top:80%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size: 140%;
+}

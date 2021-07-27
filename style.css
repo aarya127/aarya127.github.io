@@ -5,7 +5,7 @@
 .header{
     min-height:100vh;
     width:100%;
-    background-image:linear-gradient(rgba(207, 37, 131, 0.199), rgba(255, 38, 49, 0.541)),url(coverPage.jpeg);
+    background-image:linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),url(darkImage.jpeg);
     background-size:cover;
     background-position:center;
     position:absolute;
@@ -30,7 +30,7 @@ nav img{
     position:relative;
 }
 .links ul li a{
-    color:black;
+    color:rgb(210, 252, 24);
     font-size:20px;
     text-shadow: blue;
     text-decoration:none;
@@ -49,7 +49,7 @@ nav img{
 }
 .information{
     width:100%;
-    color:darkblue;
+    color:rgba(238, 23, 23, 0.795);
     position:absolute;
     text-align:center;
     top:55%;
