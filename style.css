@@ -211,6 +211,33 @@ body {
     display: none;
 }
 
+/* Normalize hero links for consistent Chrome/Safari rendering */
+.hero-link {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-appearance: none;
+}
+
+.hero-link,
+.hero-link:link,
+.hero-link:visited,
+.hero-link:active {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.hero-link:visited .hero-link-text,
+.hero-link:link .hero-link-text,
+.hero-link:active .hero-link-text {
+    color: rgba(255,255,255,0.9);
+}
+
+/* Reduce differences from UA styles in Chrome */
+.hero-link:-webkit-any(:hover, :focus, :active) {
+    -webkit-tap-highlight-color: transparent;
+}
+
 .btn {
     padding: 16px 36px;
     border-radius: 50px;
