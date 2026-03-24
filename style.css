@@ -576,6 +576,19 @@ body {
   filter: brightness(0.85);
 }
 
+/* For screenshots where the important content is at the top (avoid centering crop) */
+.insurance-screenshot {
+  object-position: top center;
+  /* nudge the image down so the top of the screenshot is visible inside the 16:9 crop */
+  transform: translateY(8%);
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .insurance-screenshot {
+  /* keep the hover scale but preserve the downward nudge */
+  transform: translateY(8%) scale(1.06);
+}
+
 /* Ensure project screenshots scale to the thumbnail without breaking layout */
 .project-thumb img,
 .project-screenshot {
