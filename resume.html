@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Resume - Aarya Shah</title>
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=6">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -13,11 +13,11 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo">AS</a>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="projects.html" class="nav-link">Projects</a></li>
-                <li><a href="resume.html" class="nav-link active">Resume</a></li>
-                <li><a href="coursework.html" class="nav-link">Coursework</a></li>
-                <li><a href="references.html" class="nav-link">References</a></li>
+                <li><a href="index.html" class="nav-link"><i class="fas fa-house"></i><span>Home</span></a></li>
+                <li><a href="projects.html" class="nav-link"><i class="fas fa-folder-open"></i><span>Projects</span></a></li>
+                <li><a href="resume.html" class="nav-link active"><i class="fas fa-file-lines"></i><span>Resume</span></a></li>
+                <li><a href="coursework.html" class="nav-link"><i class="fas fa-graduation-cap"></i><span>Coursework</span></a></li>
+                <li><a href="references.html" class="nav-link"><i class="fas fa-quote-left"></i><span>References</span></a></li>
             </ul>
         </div>
     </nav>
@@ -28,19 +28,27 @@
     </div>
 
     <div class="container">
-    <div class="resume-container">
-        <div class="container">
+        <div class="resume-container">
             <div class="resume-download">
                 <a href="Aarya_Resume.pdf" class="btn btn-primary" download>
                     <i class="fas fa-download"></i> Download Resume (PDF)
                 </a>
             </div>
-            
+
+            <!-- Phones: inline PDF iframes only render the first page on iOS, so link to the native viewer instead -->
+            <a href="Aarya_Resume.pdf" class="resume-mobile-card" target="_blank" rel="noopener">
+                <span class="resume-mobile-icon"><i class="fas fa-file-pdf"></i></span>
+                <span class="resume-mobile-text">
+                    <strong>Aarya_Resume.pdf</strong>
+                    <span>Tap to view full screen</span>
+                </span>
+                <i class="fas fa-chevron-right resume-mobile-chevron"></i>
+            </a>
+
             <div class="resume-viewer">
-                <iframe src="Aarya_Resume.pdf" type="application/pdf"></iframe>
+                <iframe src="Aarya_Resume.pdf" type="application/pdf" title="Aarya Shah resume"></iframe>
             </div>
         </div>
-    </div>
     </div>
 
     <footer class="footer">

@@ -31,7 +31,13 @@
   --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+a, button { -webkit-tap-highlight-color: rgba(255,255,255,0.06); }
 
 body {
   font-family: 'Roboto', 'Google Sans', 'Segoe UI', sans-serif;
@@ -49,11 +55,13 @@ body {
   padding: 0 24px;
 }
 
-/* SCROLLBAR */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--red-dim); }
+/* SCROLLBAR (mouse devices only; touch uses native overlay scrollbars) */
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--red-dim); }
+}
 
 /* NAVBAR */
 .navbar {
@@ -107,6 +115,9 @@ body {
   position: relative;
   letter-spacing: 0.3px;
 }
+
+/* Tab-bar icons are only shown on phones */
+.nav-link i { display: none; }
 
 .nav-link:hover {
   color: var(--white);
@@ -708,6 +719,9 @@ body {
 
 .resume-viewer iframe { width: 100%; min-height: 800px; border: none; border-radius: var(--radius-sm); }
 
+/* Shown instead of the iframe on phones (see responsive section) */
+.resume-mobile-card { display: none; }
+
 /* COURSEWORK */
 .coursework-container { padding: 0 0 80px; }
 
@@ -791,7 +805,7 @@ body {
   .about-image-container { order: -1; max-width: 300px; }
   .hero-split {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
   .hero-photo-col {
     order: -1;
@@ -801,12 +815,242 @@ body {
   }
 }
 
+/* ---------- PHONES (iOS-first) ---------- */
 @media (max-width: 640px) {
-  .hero-title { letter-spacing: -0.5px; }
-  .hero-buttons { flex-direction: column; }
-  .nav-menu { gap: 0; }
-  .nav-link { padding: 8px 10px; font-size: 0.82rem; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .about-details { padding: 24px; }
-  .page-header { padding: 100px 24px 36px; }
+  .container { padding: 0 max(20px, env(safe-area-inset-left)) 0 max(20px, env(safe-area-inset-right)); }
+
+  /* Reserve room for the floating tab bar */
+  body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+
+  /* Top bar: brand only. backdrop-filter is dropped here because it would
+     become the containing block for the fixed tab bar inside it. */
+  .navbar {
+    background: rgba(15,15,15,0.92);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding-top: env(safe-area-inset-top);
+  }
+  .nav-container { height: 52px; padding: 0 20px; }
+  .nav-logo { font-size: 1.3rem; }
+
+  /* Floating bottom tab bar */
+  .nav-menu {
+    position: fixed;
+    left: max(12px, env(safe-area-inset-left));
+    right: max(12px, env(safe-area-inset-right));
+    bottom: calc(10px + env(safe-area-inset-bottom));
+    z-index: 1001;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    padding: 6px;
+    border-radius: 26px;
+    background: rgba(26,26,26,0.92);
+    backdrop-filter: blur(24px) saturate(1.8);
+    -webkit-backdrop-filter: blur(24px) saturate(1.8);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+  }
+  .nav-menu li { min-width: 0; }
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-height: 50px;
+    padding: 6px 2px;
+    border-radius: 20px;
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    color: var(--white55);
+    white-space: nowrap;
+  }
+  .nav-link i { display: block; font-size: 1.1rem; line-height: 1; }
+  .nav-link span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+  .nav-link.active { background: rgba(255,0,51,0.14); color: var(--white); }
+  .nav-link.active i { color: var(--red); }
+  .nav-link.active::after { display: none; }
+
+  /* Hero: centred, compact */
+  .hero { min-height: 0; padding-top: 52px; }
+  .hero::after { background-size: 40px 40px; }
+  .hero-content { padding: 28px 20px 8px; }
+  .hero-split { gap: 24px; }
+  .hero-photo-frame { max-width: 168px; }
+  .hero-photo-frame::before { border-radius: 22px; }
+  .hero-photo-frame img { border-radius: 20px; }
+  .hero-text-col { align-items: center; text-align: center; }
+  .hero-title {
+    font-size: clamp(2.2rem, 10vw, 2.8rem);
+    letter-spacing: -0.5px;
+    margin-bottom: 14px;
+  }
+  .hero-subtitle { font-size: 1rem; line-height: 1.5; margin-bottom: 16px; }
+  .subtitle-part { display: block; }
+  .subtitle-part + .subtitle-sep + .subtitle-part { margin-top: 4px; color: var(--white80); }
+  .subtitle-sep { display: none; }
+  .hero-description { font-size: 0.95rem; line-height: 1.7; margin-bottom: 24px; }
+
+  .hero-buttons {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .hero-buttons .btn { flex: 1 1 auto; justify-content: center; padding: 13px 16px; }
+  .hero-buttons .btn-primary { flex-grow: 2; }
+
+  /* Contact links as an iOS-style inset grouped list */
+  .hero-links {
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: left;
+  }
+  .hero-link {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    gap: 14px;
+    min-height: 48px;
+    position: relative;
+  }
+  .hero-link + .hero-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50px;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+  .hero-link i { width: 20px; text-align: center; font-size: 1.05rem; }
+  .hero-link-text { color: var(--white80); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* Page headers */
+  .page-header { padding: calc(80px + env(safe-area-inset-top)) 20px 24px; }
+  .page-header h1 { font-size: 2.1rem; }
+  .page-header p { font-size: 0.95rem; }
+
+  .section-title { font-size: 1.4rem; margin-bottom: 16px; }
+
+  /* About: compact icon rows instead of tall cards */
+  .about-section { padding: 28px 0 32px; }
+  .about-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
+  .about-card {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    column-gap: 14px;
+    row-gap: 2px;
+    align-items: center;
+    padding: 16px;
+  }
+  .about-card i {
+    grid-row: span 2;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    border-radius: 12px;
+    background: rgba(255,0,51,0.12);
+  }
+  .about-details { padding: 20px; border-radius: 16px; }
+  .about-text h3 { font-size: 1.2rem; margin-bottom: 12px; }
+  .about-text p { font-size: 0.92rem; line-height: 1.7; }
+
+  /* Projects / references */
+  .projects-grid { grid-template-columns: 1fr; gap: 16px; }
+  .project-card { border-radius: 16px; }
+  .project-body { padding: 16px 16px 18px; }
+  .project-body h3 { font-size: 1.05rem; }
+  .project-description { font-size: 0.88rem; }
+  .project-links { gap: 10px; }
+  .project-link { min-height: 40px; padding: 8px 16px; font-size: 0.85rem; }
+
+  /* Resume: replace the iframe with a native-viewer link */
+  .resume-container { min-height: 0; padding-bottom: 32px; }
+  .resume-download .btn { width: 100%; justify-content: center; }
+  .resume-viewer { display: none; }
+  .resume-mobile-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-decoration: none;
+  }
+  .resume-mobile-icon {
+    flex: 0 0 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255,0,51,0.12);
+    color: var(--red);
+    font-size: 1.4rem;
+  }
+  .resume-mobile-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+  .resume-mobile-text strong { color: var(--white); font-weight: 600; font-size: 0.95rem; }
+  .resume-mobile-text span { color: var(--white55); font-size: 0.82rem; }
+  .resume-mobile-chevron { color: var(--white30); }
+
+  /* Coursework */
+  .coursework-container { padding-bottom: 32px; }
+  .term-container { gap: 12px; }
+  .term-group { padding: 16px; border-radius: 16px; }
+  .term-title { margin-bottom: 8px; }
+  .courses-list { gap: 2px; }
+  .course-item { padding: 8px 0; gap: 10px; }
+  .courses-list .course-code { min-width: 76px; }
+
+  .footer { display: none; }
+}
+
+/* ---------- TOUCH DEVICES ----------
+   iOS keeps :hover applied after a tap, which left cards lifted/shifted.
+   Neutralise hover-only effects and the hover-revealed play button. */
+@media (hover: none) {
+  .about-card:hover,
+  .project-card:hover,
+  .term-group:hover,
+  .btn:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .hero-link:hover { transform: none; }
+
+  .about-card:hover { background: var(--bg2); border-color: var(--border); }
+  .about-card:hover::before { transform: scaleX(0); }
+  .project-card:hover { background: var(--bg2); border-color: var(--border); box-shadow: none; }
+  .project-card:hover .project-thumb img { transform: none; filter: brightness(0.85); }
+  .project-card:hover .insurance-screenshot { transform: translateY(8%); }
+  .term-group:hover { background: var(--bg2); border-left-color: rgba(255,0,51,0.5); }
+  .course-item:hover { background: transparent; }
+  .btn:hover::after { opacity: 0; }
+  .nav-link:not(.active):hover { background: transparent; color: var(--white55); }
+
+  .project-card { cursor: default; }
+  .play-btn { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
 }
